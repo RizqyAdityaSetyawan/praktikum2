@@ -1,19 +1,1034 @@
-<!DOCTYPE html> <html lang="id"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pendaftaran Mahasiswa | UMPKU</title>
+```html
+<!DOCTYPE html>
+<html lang="id">
 
-<link rel="stylesheet" href="style.css">
+<head>
 
-</head> <body>
-<a class="lewati" href="#konten">Lewati ke konten</a>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Pendaftaran Mahasiswa | UMPKU
+    </title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fafc,
+                    #eef7f6
+                );
+
+            color: #1e293b;
+
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           SKIP LINK
+        ===================================================== */
+
+        .lewati {
+            position: absolute;
+
+            left: -9999px;
+            top: 10px;
+
+            background: #0f766e;
+
+            color: white;
+
+            padding: 10px 15px;
+
+            border-radius: 8px;
+
+            z-index: 9999;
+        }
+
+        .lewati:focus {
+            left: 15px;
+        }
+
+
+        /* =====================================================
+           HALAMAN
+        ===================================================== */
+
+        .halaman {
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                80px 25px
+                75px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(45, 212, 191, 0.25),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 15% 80%,
+                    rgba(14, 165, 233, 0.18),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #134e4a
+                );
+        }
+
+        .header::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border: 1px solid
+                rgba(255,255,255,0.08);
+
+            border-radius: 50%;
+
+            right: -120px;
+            top: -120px;
+        }
+
+        .header::after {
+            content: "";
+
+            position: absolute;
+
+            width: 200px;
+            height: 200px;
+
+            border: 1px solid
+                rgba(255,255,255,0.06);
+
+            border-radius: 50%;
+
+            left: -80px;
+            bottom: -80px;
+        }
+
+        .identitas {
+            position: relative;
+
+            z-index: 1;
+
+            display: inline-block;
+
+            padding: 7px 15px;
+
+            margin-bottom: 15px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(45,212,191,0.12);
+
+            border:
+                1px solid
+                rgba(94,234,212,0.25);
+
+            color: #99f6e4;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            letter-spacing: 1px;
+        }
+
+        .header h1 {
+            position: relative;
+
+            z-index: 1;
+
+            font-size:
+                clamp(30px, 5vw, 52px);
+
+            line-height: 1.1;
+
+            margin-bottom: 15px;
+
+            letter-spacing: -1px;
+        }
+
+        .header > p:last-child {
+            position: relative;
+
+            z-index: 1;
+
+            max-width: 650px;
+
+            margin: auto;
+
+            color: #cbd5e1;
+
+            font-size: 15px;
+        }
+
+
+        /* =====================================================
+           NAVIGASI
+        ===================================================== */
+
+        .menu {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 5px;
+
+            padding: 12px 20px;
+
+            background:
+                rgba(15,23,42,0.95);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 5px 25px
+                rgba(0,0,0,0.08);
+        }
+
+        .menu a {
+            color: #cbd5e1;
+
+            padding: 9px 15px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .menu a:hover,
+        .menu a:focus {
+            background:
+                rgba(20,184,166,0.15);
+
+            color: #5eead4;
+
+            outline: none;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        main {
+            width: 100%;
+        }
+
+        .panel {
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding:
+                75px 25px;
+        }
+
+        .panel > h2 {
+            text-align: center;
+
+            color: #0f172a;
+
+            font-size: 32px;
+
+            margin-bottom: 10px;
+        }
+
+        .panel > h2::after {
+            content: "";
+
+            display: block;
+
+            width: 50px;
+            height: 3px;
+
+            margin:
+                12px auto
+                30px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0f766e,
+                    #2dd4bf
+                );
+        }
+
+        .panel > p {
+            max-width: 650px;
+
+            margin:
+                0 auto
+                35px;
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           PROFIL MAHASISWA
+        ===================================================== */
+
+        #profil {
+            background:
+                linear-gradient(
+                    180deg,
+                    #f8fafc,
+                    #ffffff
+                );
+        }
+
+        .profil-container {
+            display: grid;
+
+            grid-template-columns:
+                280px 1fr;
+
+            gap: 30px;
+
+            align-items: center;
+        }
+
+
+        /* FOTO */
+
+        .foto-profil {
+            min-height: 300px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 20px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0f766e,
+                    #134e4a
+                );
+
+            box-shadow:
+                0 20px 45px
+                rgba(15,118,110,0.16);
+        }
+
+        .foto-profil img {
+            display: none;
+
+            width: 190px;
+            height: 230px;
+
+            object-fit: cover;
+
+            border-radius: 18px;
+
+            border:
+                4px solid
+                rgba(255,255,255,0.85);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,0.25);
+        }
+
+        .foto-placeholder {
+            width: 190px;
+            height: 230px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            border:
+                2px dashed
+                rgba(255,255,255,0.45);
+
+            border-radius: 18px;
+
+            color: #ccfbf1;
+
+            font-size: 14px;
+
+            background:
+                rgba(255,255,255,0.05);
+        }
+
+
+        /* BIODATA */
+
+        .biodata {
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            box-shadow:
+                0 15px 40px
+                rgba(15,23,42,0.05);
+        }
+
+        .biodata h3 {
+            color: #0f172a;
+
+            font-size: 21px;
+
+            margin-bottom: 20px;
+        }
+
+        .data-biodata {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+        .data-biodata p {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+
+            padding: 13px 15px;
+
+            margin: 0;
+
+            border-radius: 11px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid
+                #e2e8f0;
+        }
+
+        .data-biodata span {
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+        }
+
+        .data-biodata strong {
+            color: #1e293b;
+
+            font-size: 14px;
+
+            word-break: break-word;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        #pendaftaran {
+            max-width: none;
+
+            background:
+                #f1f5f9;
+        }
+
+        #pendaftaran > h2,
+        #pendaftaran > p,
+        #pendaftaran > form,
+        #pendaftaran > .pesan {
+            max-width: 1050px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+        }
+
+        form {
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 24px;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            box-shadow:
+                0 20px 50px
+                rgba(15,23,42,0.06);
+        }
+
+
+        /* FIELDSET */
+
+        fieldset {
+            border: 0;
+
+            padding: 0;
+
+            margin: 0 0 30px;
+
+            padding-bottom: 30px;
+
+            border-bottom:
+                1px solid
+                #e2e8f0;
+        }
+
+        fieldset:last-of-type {
+            border-bottom: 0;
+
+            margin-bottom: 0;
+
+            padding-bottom: 0;
+        }
+
+        legend {
+            color: #0f766e;
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-row {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #334155;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border:
+                1px solid
+                #cbd5e1;
+
+            border-radius: 10px;
+
+            background: white;
+
+            color: #1e293b;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+
+            border-color: #0f766e;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(20,184,166,0.12);
+        }
+
+        textarea {
+            resize: vertical;
+
+            min-height: 110px;
+        }
+
+        small {
+            display: block;
+
+            margin-top: 7px;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+        }
+
+
+        /* RADIO */
+
+        .radio-group {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+        .radio-group label {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 10px 13px;
+
+            margin: 0;
+
+            background: #f8fafc;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: 500;
+        }
+
+        .radio-group input {
+            width: auto;
+
+            accent-color: #0f766e;
+        }
+
+
+        /* =====================================================
+           TOMBOL
+        ===================================================== */
+
+        .tombol-form {
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-top: 25px;
+        }
+
+        .tombol-form button {
+            border: 0;
+
+            padding: 13px 22px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .btn-simpan {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f766e,
+                    #0d9488
+                );
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(15,118,110,0.15);
+        }
+
+        .btn-simpan:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(15,118,110,0.22);
+        }
+
+        .btn-reset {
+            background: #e2e8f0;
+
+            color: #334155;
+        }
+
+        .btn-reset:hover {
+            background: #cbd5e1;
+        }
+
+
+        /* =====================================================
+           PESAN
+        ===================================================== */
+
+        .pesan {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 15px 18px;
+
+            border-radius: 11px;
+
+            background: #dcfce7;
+
+            border:
+                1px solid
+                #86efac;
+
+            color: #166534;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           LAYANAN
+        ===================================================== */
+
+        #layanan {
+            background: white;
+        }
+
+        .kartu-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .kartu {
+            padding: 28px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #f8fafc
+                );
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            transition: 0.3s;
+        }
+
+        .kartu:hover {
+            transform: translateY(-7px);
+
+            border-color: #99f6e4;
+
+            box-shadow:
+                0 18px 40px
+                rgba(15,118,110,0.08);
+        }
+
+        .kartu::before {
+            content: "✦";
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 45px;
+            height: 45px;
+
+            margin-bottom: 18px;
+
+            border-radius: 12px;
+
+            background: #ccfbf1;
+
+            color: #0f766e;
+
+            font-weight: bold;
+        }
+
+        .kartu h3 {
+            margin-bottom: 8px;
+
+            color: #0f172a;
+
+            font-size: 18px;
+        }
+
+        .kartu p {
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            padding: 40px 25px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                #0f172a;
+        }
+
+        .footer p {
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            margin: 4px 0;
+        }
+
+        .footer strong {
+            color: #e2e8f0;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .profil-container {
+                grid-template-columns: 1fr;
+            }
+
+            .foto-profil {
+                max-width: 400px;
+
+                width: 100%;
+
+                margin: auto;
+            }
+
+            .kartu-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .header {
+                padding:
+                    60px 20px;
+            }
+
+            .header h1 {
+                font-size: 31px;
+            }
+
+            .panel {
+                padding:
+                    60px 18px;
+            }
+
+            .panel > h2 {
+                font-size: 27px;
+            }
+
+            .data-biodata,
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            form {
+                padding: 22px;
+            }
+
+            .biodata {
+                padding: 22px;
+            }
+
+            .menu {
+                padding: 9px 10px;
+            }
+
+            .menu a {
+                padding: 7px 9px;
+
+                font-size: 12px;
+            }
+
+            .tombol-form button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<a
+    class="lewati"
+    href="#konten"
+>
+    Lewati ke konten
+</a>
+
 
 <div class="halaman">
 
-    <!-- HEADER -->
-    <header class="header" id="beranda">
 
-        <p class="identitas">Praktikum Pemrograman Web</p>
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-        <h1>Universitas Muhammadiyah PKU Surakarta</h1>
+    <header
+        class="header"
+        id="beranda"
+    >
+
+        <p class="identitas">
+            Praktikum Pemrograman Web
+        </p>
+
+        <h1>
+            Universitas Muhammadiyah PKU Surakarta
+        </h1>
 
         <p>
             Sistem sederhana profil dan pendaftaran mahasiswa
@@ -23,41 +1038,75 @@
     </header>
 
 
-    <!-- NAVIGASI -->
-    <nav class="menu" aria-label="Navigasi utama">
+    <!-- =====================================================
+         NAVIGASI
+    ===================================================== -->
 
-        <a href="#beranda">Beranda</a>
+    <nav
+        class="menu"
+        aria-label="Navigasi utama"
+    >
 
-        <a href="#profil">Profil</a>
+        <a href="#beranda">
+            Beranda
+        </a>
 
-        <a href="#pendaftaran">Pendaftaran</a>
+        <a href="#profil">
+            Profil
+        </a>
 
-        <a href="#layanan">Layanan</a>
+        <a href="#pendaftaran">
+            Pendaftaran
+        </a>
+
+        <a href="#layanan">
+            Layanan
+        </a>
 
     </nav>
 
 
-    <!-- KONTEN -->
-    <main id="konten" tabindex="-1">
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main
+        id="konten"
+        tabindex="-1"
+    >
 
 
-        <!-- PROFIL MAHASISWA -->
-        <section id="profil" class="panel">
+        <!-- =================================================
+             PROFIL MAHASISWA
+        ================================================== -->
 
-            <h2>Profil Mahasiswa</h2>
+        <section
+            id="profil"
+            class="panel"
+        >
+
+            <h2>
+                Profil Mahasiswa
+            </h2>
+
 
             <div class="profil-container">
 
+
                 <!-- FOTO -->
+
                 <div class="foto-profil">
 
                     <img
                         id="fotoTampil"
                         src=""
-                        alt="Foto profil mahasiswa"
+                        alt="Foto profil Rizqy Aditya Setyawan"
                     >
 
-                    <div class="foto-placeholder" id="fotoPlaceholder">
+                    <div
+                        class="foto-placeholder"
+                        id="fotoPlaceholder"
+                    >
                         Foto Profil
                     </div>
 
@@ -65,67 +1114,120 @@
 
 
                 <!-- DATA PROFIL -->
+
                 <div class="biodata">
 
-                    <h3>Data Mahasiswa</h3>
+                    <h3>
+                        Data Mahasiswa
+                    </h3>
+
 
                     <div class="data-biodata">
 
+
                         <p>
-                            <span>Nama</span>
+
+                            <span>
+                                Nama
+                            </span>
+
                             <strong id="tampilNama">
                                 Rizqy Aditya Setyawan
                             </strong>
+
                         </p>
 
+
                         <p>
-                            <span>NIM</span>
+
+                            <span>
+                                NIM
+                            </span>
+
                             <strong id="tampilNim">
                                 1202405041
                             </strong>
+
                         </p>
 
+
                         <p>
-                            <span>Program Studi</span>
+
+                            <span>
+                                Program Studi
+                            </span>
+
                             <strong id="tampilProdi">
                                 D4 Elektromedis
                             </strong>
+
                         </p>
 
+
                         <p>
-                            <span>Tempat, Tanggal Lahir</span>
+
+                            <span>
+                                Tempat, Tanggal Lahir
+                            </span>
+
                             <strong id="tampilLahir">
                                 Karanganyar, 31 Mei 2006
                             </strong>
+
                         </p>
 
+
                         <p>
-                            <span>Jenis Kelamin</span>
+
+                            <span>
+                                Jenis Kelamin
+                            </span>
+
                             <strong id="tampilKelamin">
-                                Pria
+                                Laki-laki
                             </strong>
+
                         </p>
 
+
                         <p>
-                            <span>Alamat</span>
+
+                            <span>
+                                Alamat
+                            </span>
+
                             <strong id="tampilAlamat">
                                 Wonolopo
                             </strong>
+
                         </p>
 
+
                         <p>
-                            <span>Email</span>
+
+                            <span>
+                                Email
+                            </span>
+
                             <strong id="tampilEmail">
                                 rizqya583@gmail.com
                             </strong>
+
                         </p>
 
+
                         <p>
-                            <span>No. HP</span>
+
+                            <span>
+                                No. HP
+                            </span>
+
                             <strong id="tampilHp">
-                                089687048300
+                                Belum diisi
                             </strong>
+
                         </p>
+
 
                     </div>
 
@@ -136,24 +1238,36 @@
         </section>
 
 
+        <!-- =================================================
+             PENDAFTARAN
+        ================================================== -->
 
-        <!-- FORM PENDAFTARAN -->
-        <section id="pendaftaran" class="panel">
+        <section
+            id="pendaftaran"
+            class="panel"
+        >
 
-            <h2>Pendaftaran Mahasiswa</h2>
+            <h2>
+                Pendaftaran Mahasiswa
+            </h2>
 
             <p>
-                Silakan isi data pendaftaran mahasiswa pada formulir
-                berikut. Data akan ditampilkan pada bagian profil.
+                Silakan isi data pendaftaran mahasiswa pada
+                formulir berikut. Data akan ditampilkan
+                pada bagian profil.
             </p>
 
 
             <form id="formPendaftaran">
 
+
                 <!-- DATA PRIBADI -->
+
                 <fieldset>
 
-                    <legend>Data Pribadi</legend>
+                    <legend>
+                        Data Pribadi
+                    </legend>
 
 
                     <div class="form-group">
@@ -166,7 +1280,6 @@
                             type="text"
                             id="nama"
                             name="nama"
-                            placeholder="Masukkan nama lengkap"
                             value="Rizqy Aditya Setyawan"
                             required
                         >
@@ -175,6 +1288,7 @@
 
 
                     <div class="form-row">
+
 
                         <div class="form-group">
 
@@ -186,7 +1300,6 @@
                                 type="text"
                                 id="nim"
                                 name="nim"
-                                placeholder="Masukkan NIM"
                                 value="1202405041"
                                 required
                             >
@@ -205,15 +1318,16 @@
                                 id="nik"
                                 name="nik"
                                 placeholder="Masukkan NIK"
-                                value="1235677"
                             >
 
                         </div>
+
 
                     </div>
 
 
                     <div class="form-row">
+
 
                         <div class="form-group">
 
@@ -225,7 +1339,6 @@
                                 type="text"
                                 id="tempatLahir"
                                 name="tempatLahir"
-                                placeholder="Contoh: Surakarta"
                                 value="Karanganyar"
                                 required
                             >
@@ -249,6 +1362,7 @@
 
                         </div>
 
+
                     </div>
 
 
@@ -258,9 +1372,12 @@
                             Jenis Kelamin
                         </label>
 
+
                         <div class="radio-group">
 
+
                             <label>
+
                                 <input
                                     type="radio"
                                     name="kelamin"
@@ -268,17 +1385,24 @@
                                     checked
                                     required
                                 >
+
                                 Laki-laki
+
                             </label>
 
+
                             <label>
+
                                 <input
                                     type="radio"
                                     name="kelamin"
                                     value="Perempuan"
                                 >
+
                                 Perempuan
+
                             </label>
+
 
                         </div>
 
@@ -287,11 +1411,13 @@
                 </fieldset>
 
 
-
                 <!-- DATA AKADEMIK -->
+
                 <fieldset>
 
-                    <legend>Data Akademik</legend>
+                    <legend>
+                        Data Akademik
+                    </legend>
 
 
                     <div class="form-group">
@@ -306,11 +1432,10 @@
                             required
                         >
 
-                            <option value="">
-                                -- Pilih Program Studi --
-                            </option>
-
-                            <option value="D4 Elektromedis" selected>
+                            <option
+                                value="D4 Elektromedis"
+                                selected
+                            >
                                 D4 Elektromedis
                             </option>
 
@@ -320,6 +1445,58 @@
 
                             <option value="Program Studi Keperawatan">
                                 Program Studi Keperawatan
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="semester">
+                            Semester
+                        </label>
+
+                        <select
+                            id="semester"
+                            name="semester"
+                            required
+                        >
+
+                            <option value="1">
+                                Semester 1
+                            </option>
+
+                            <option value="2">
+                                Semester 2
+                            </option>
+
+                            <option value="3">
+                                Semester 3
+                            </option>
+
+                            <option value="4">
+                                Semester 4
+                            </option>
+
+                            <option
+                                value="5"
+                                selected
+                            >
+                                Semester 5
+                            </option>
+
+                            <option value="6">
+                                Semester 6
+                            </option>
+
+                            <option value="7">
+                                Semester 7
+                            </option>
+
+                            <option value="8">
+                                Semester 8
                             </option>
 
                         </select>
@@ -339,14 +1516,24 @@
                             required
                         >
 
-                            <option value="">
-                                -- Pilih Tahun --
+                            <option
+                                value="2024"
+                                selected
+                            >
+                                2024
                             </option>
 
-                            <option value="2024" selected>2024</option>
-                            <option value="2025">2025</option>
-                            <option value="2026">2026</option>
-                            <option value="2027">2027</option>
+                            <option value="2025">
+                                2025
+                            </option>
+
+                            <option value="2026">
+                                2026
+                            </option>
+
+                            <option value="2027">
+                                2027
+                            </option>
 
                         </select>
 
@@ -355,11 +1542,13 @@
                 </fieldset>
 
 
-
                 <!-- KONTAK -->
+
                 <fieldset>
 
-                    <legend>Data Kontak</legend>
+                    <legend>
+                        Data Kontak
+                    </legend>
 
 
                     <div class="form-group">
@@ -372,7 +1561,6 @@
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="nama@email.com"
                             value="rizqya583@gmail.com"
                             required
                         >
@@ -390,8 +1578,7 @@
                             type="tel"
                             id="hp"
                             name="hp"
-                            placeholder="08xxxxxxxxxx"
-                            value="089687048300"
+                            placeholder="Masukkan nomor HP"
                             required
                         >
 
@@ -408,7 +1595,6 @@
                             id="alamat"
                             name="alamat"
                             rows="4"
-                            placeholder="Masukkan alamat lengkap"
                             required
                         >Wonolopo</textarea>
 
@@ -417,11 +1603,14 @@
                 </fieldset>
 
 
-
                 <!-- FOTO -->
+
                 <fieldset>
 
-                    <legend>Foto Profil</legend>
+                    <legend>
+                        Foto Profil
+                    </legend>
+
 
                     <div class="form-group">
 
@@ -445,26 +1634,28 @@
                 </fieldset>
 
 
-
                 <!-- TOMBOL -->
+
                 <div class="tombol-form">
 
                     <button
                         type="submit"
                         class="btn-simpan"
                     >
-                        Simpan Data
+                        ✓ Simpan Data
                     </button>
+
 
                     <button
                         type="button"
                         id="btnReset"
                         class="btn-reset"
                     >
-                        Reset Data
+                        ↻ Reset Data
                     </button>
 
                 </div>
+
 
             </form>
 
@@ -476,20 +1667,32 @@
                 aria-live="polite"
             ></div>
 
+
         </section>
 
 
+        <!-- =================================================
+             LAYANAN
+        ================================================== -->
 
-        <!-- LAYANAN -->
-        <section id="layanan" class="panel">
+        <section
+            id="layanan"
+            class="panel"
+        >
 
-            <h2>Contoh Layanan Digital</h2>
+            <h2>
+                Contoh Layanan Digital
+            </h2>
+
 
             <div class="kartu-grid">
 
+
                 <article class="kartu">
 
-                    <h3>Informasi Akademik</h3>
+                    <h3>
+                        Informasi Akademik
+                    </h3>
 
                     <p>
                         Informasi mengenai kegiatan perkuliahan,
@@ -501,7 +1704,9 @@
 
                 <article class="kartu">
 
-                    <h3>Pembelajaran Daring</h3>
+                    <h3>
+                        Pembelajaran Daring
+                    </h3>
 
                     <p>
                         Media pembelajaran untuk membantu mahasiswa
@@ -513,7 +1718,9 @@
 
                 <article class="kartu">
 
-                    <h3>Informasi Mahasiswa</h3>
+                    <h3>
+                        Informasi Mahasiswa
+                    </h3>
 
                     <p>
                         Informasi mengenai kegiatan dan kebutuhan
@@ -522,15 +1729,19 @@
 
                 </article>
 
+
             </div>
 
         </section>
 
+
     </main>
 
 
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
 
-    <!-- FOOTER -->
     <footer class="footer">
 
         <p>
@@ -543,11 +1754,441 @@
             Praktikum Pemrograman Web
         </p>
 
+        <p>
+            Rizqy Aditya Setyawan • D4 Elektromedis • 1202405041
+        </p>
+
     </footer>
+
 
 </div>
 
 
-<script src="script.js"></script>
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
 
-</body> </html>
+<script>
+
+    /* =====================================================
+       MENGAMBIL ELEMEN HTML
+    ===================================================== */
+
+    const form =
+        document.getElementById(
+            "formPendaftaran"
+        );
+
+    const pesan =
+        document.getElementById(
+            "pesan"
+        );
+
+    const fotoInput =
+        document.getElementById(
+            "foto"
+        );
+
+    const fotoTampil =
+        document.getElementById(
+            "fotoTampil"
+        );
+
+    const fotoPlaceholder =
+        document.getElementById(
+            "fotoPlaceholder"
+        );
+
+
+    /* =====================================================
+       SIMPAN DATA
+    ===================================================== */
+
+    form.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            /* DATA PRIBADI */
+
+            const nama =
+                document.getElementById(
+                    "nama"
+                ).value;
+
+            const nim =
+                document.getElementById(
+                    "nim"
+                ).value;
+
+            const tempatLahir =
+                document.getElementById(
+                    "tempatLahir"
+                ).value;
+
+            const tanggalLahir =
+                document.getElementById(
+                    "tanggalLahir"
+                ).value;
+
+            const kelamin =
+                document.querySelector(
+                    'input[name="kelamin"]:checked'
+                ).value;
+
+
+            /* DATA AKADEMIK */
+
+            const prodi =
+                document.getElementById(
+                    "prodi"
+                ).value;
+
+
+            /* DATA KONTAK */
+
+            const alamat =
+                document.getElementById(
+                    "alamat"
+                ).value;
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value;
+
+            const hp =
+                document.getElementById(
+                    "hp"
+                ).value;
+
+
+            /* FORMAT TANGGAL */
+
+            const tanggal =
+                new Date(
+                    tanggalLahir
+                );
+
+            const pilihanBulan = [
+                "Januari",
+                "Februari",
+                "Maret",
+                "April",
+                "Mei",
+                "Juni",
+                "Juli",
+                "Agustus",
+                "September",
+                "Oktober",
+                "November",
+                "Desember"
+            ];
+
+
+            const tanggalIndonesia =
+                tanggal.getDate()
+                + " "
+                + pilihanBulan[
+                    tanggal.getMonth()
+                ]
+                + " "
+                + tanggal.getFullYear();
+
+
+            /* UPDATE PROFIL */
+
+            document.getElementById(
+                "tampilNama"
+            ).textContent = nama;
+
+
+            document.getElementById(
+                "tampilNim"
+            ).textContent = nim;
+
+
+            document.getElementById(
+                "tampilProdi"
+            ).textContent = prodi;
+
+
+            document.getElementById(
+                "tampilLahir"
+            ).textContent =
+                tempatLahir
+                + ", "
+                + tanggalIndonesia;
+
+
+            document.getElementById(
+                "tampilKelamin"
+            ).textContent =
+                kelamin;
+
+
+            document.getElementById(
+                "tampilAlamat"
+            ).textContent =
+                alamat;
+
+
+            document.getElementById(
+                "tampilEmail"
+            ).textContent =
+                email;
+
+
+            document.getElementById(
+                "tampilHp"
+            ).textContent =
+                hp;
+
+
+            /* PESAN BERHASIL */
+
+            pesan.textContent =
+                "✓ Data berhasil disimpan. Profil mahasiswa telah diperbarui.";
+
+            pesan.style.display =
+                "block";
+
+
+            /* PINDAH KE PROFIL */
+
+            document.getElementById(
+                "profil"
+            ).scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+
+    /* =====================================================
+       PREVIEW FOTO
+    ===================================================== */
+
+    fotoInput.addEventListener(
+        "change",
+        function() {
+
+            const file =
+                this.files[0];
+
+
+            if (!file) {
+                return;
+            }
+
+
+            if (
+                !file.type.startsWith(
+                    "image/"
+                )
+            ) {
+
+                alert(
+                    "Silakan pilih file gambar."
+                );
+
+                this.value = "";
+
+                return;
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(event) {
+
+                    fotoTampil.src =
+                        event.target.result;
+
+                    fotoTampil.style.display =
+                        "block";
+
+                    fotoPlaceholder.style.display =
+                        "none";
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       RESET DATA
+    ===================================================== */
+
+    document.getElementById(
+        "btnReset"
+    ).addEventListener(
+        "click",
+        function() {
+
+            /* Kembalikan form ke data awal */
+
+            document.getElementById(
+                "nama"
+            ).value =
+                "Rizqy Aditya Setyawan";
+
+
+            document.getElementById(
+                "nim"
+            ).value =
+                "1202405041";
+
+
+            document.getElementById(
+                "tempatLahir"
+            ).value =
+                "Karanganyar";
+
+
+            document.getElementById(
+                "tanggalLahir"
+            ).value =
+                "2006-05-31";
+
+
+            document.querySelector(
+                'input[name="kelamin"][value="Laki-laki"]'
+            ).checked =
+                true;
+
+
+            document.getElementById(
+                "prodi"
+            ).value =
+                "D4 Elektromedis";
+
+
+            document.getElementById(
+                "semester"
+            ).value =
+                "5";
+
+
+            document.getElementById(
+                "tahunMasuk"
+            ).value =
+                "2024";
+
+
+            document.getElementById(
+                "email"
+            ).value =
+                "rizqya583@gmail.com";
+
+
+            document.getElementById(
+                "alamat"
+            ).value =
+                "Wonolopo";
+
+
+            document.getElementById(
+                "hp"
+            ).value =
+                "";
+
+
+            document.getElementById(
+                "nik"
+            ).value =
+                "";
+
+
+            /* Kembalikan tampilan profil */
+
+            document.getElementById(
+                "tampilNama"
+            ).textContent =
+                "Rizqy Aditya Setyawan";
+
+
+            document.getElementById(
+                "tampilNim"
+            ).textContent =
+                "1202405041";
+
+
+            document.getElementById(
+                "tampilProdi"
+            ).textContent =
+                "D4 Elektromedis";
+
+
+            document.getElementById(
+                "tampilLahir"
+            ).textContent =
+                "Karanganyar, 31 Mei 2006";
+
+
+            document.getElementById(
+                "tampilKelamin"
+            ).textContent =
+                "Laki-laki";
+
+
+            document.getElementById(
+                "tampilAlamat"
+            ).textContent =
+                "Wonolopo";
+
+
+            document.getElementById(
+                "tampilEmail"
+            ).textContent =
+                "rizqya583@gmail.com";
+
+
+            document.getElementById(
+                "tampilHp"
+            ).textContent =
+                "Belum diisi";
+
+
+            /* Reset foto */
+
+            fotoInput.value = "";
+
+            fotoTampil.src = "";
+
+            fotoTampil.style.display =
+                "none";
+
+            fotoPlaceholder.style.display =
+                "flex";
+
+
+            /* Hilangkan pesan */
+
+            pesan.textContent = "";
+
+            pesan.style.display =
+                "none";
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>
+```
